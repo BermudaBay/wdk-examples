@@ -2,10 +2,10 @@
  * Bermuda Example: Withdraw from a private Bermuda account onto a public
  * Ethereum account.
  *
- * Run: npx tsx wallet-bermuda/withdraw.ts
+ * Run: npx tsx wallet-evm-bermuda/withdraw.ts
  */
 
-import WalletManagerBermuda from '@bermuda/wdk-wallet-bermuda'
+import WalletManagerBermuda from '@bermuda/wdk-wallet-evm-bermuda'
 import { loadBermudaConfig } from '../shared/config.js'
 import { logSection, logResult } from '../shared/helpers.js'
 import { join } from 'node:path'

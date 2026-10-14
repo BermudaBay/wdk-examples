@@ -2,10 +2,10 @@
  * Bermuda Example: Transfer from one's default to another Bermuda account,
  * here just a Bermuda sub account owned by the master EVM wallet.
  *
- * Run: npx tsx wallet-bermuda/transfer.ts
+ * Run: npx tsx wallet-evm-bermuda/transfer.ts
  */
 
-import WalletManagerBermuda from '@bermuda/wdk-wallet-bermuda'
+import WalletManagerBermuda from '@bermuda/wdk-wallet-evm-bermuda'
 import { loadBermudaConfig } from '../shared/config.js'
 import { logSection, logResult } from '../shared/helpers.js'
 import { join } from 'node:path'
@@ -29,13 +29,14 @@ async function main() {
   // EVM wallet.
   const subAccount = await wallet.getBermudaAccount(0, 1)
 
-  // Also supports multiple .recipients as {to,amount,note?}[].
+  // Also supports multiple .recipients as {to,amount,memo?}[].
   const txHash = await account.transfer({
     to: subAccount.address,
     token: config.tokenContract,
     amount: 5n,
-    // Transaction notes are optional and can be set on deposits and transfers.
-    note: 'gmuda'
+    // Memos are optional, only readable by the recipient, and can be set on
+    // deposits and transfers.
+    memo: 'gmuda'
   })
   logResult('Transaction Sent', { hash: txHash })
 
