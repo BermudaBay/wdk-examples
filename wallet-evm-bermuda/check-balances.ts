@@ -3,12 +3,12 @@
  *
  * Demonstrates: Querying shielded ERC-20 token balances for an owned account.
  *
- * Run: npx tsx wallet-bermuda/check-balances.ts
+ * Run: npx tsx wallet-evm-bermuda/check-balances.ts
  */
 
-import WalletManagerBermuda from '@bermuda/wdk-wallet-bermuda'
+import WalletManagerBermuda from '@bermuda/wdk-wallet-evm-bermuda'
 import { loadBermudaConfig } from '../shared/config.js'
-import { logSection, logResult } from '../shared/helpers.js'
+import { logSection, logResult, formatBermudaAddress } from '../shared/helpers.js'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import fs from 'node:fs'
@@ -25,7 +25,7 @@ async function main() {
   })
 
   const account = await wallet.getBermudaAccount()
-  logResult('Bermuda account', { address: account.address })
+  logResult('Bermuda account', { address: formatBermudaAddress(account.address) })
 
   const tokenBalance = await account.getTokenBalance(config.tokenContract)
   logResult('Shielded ERC-20 token balance', {
